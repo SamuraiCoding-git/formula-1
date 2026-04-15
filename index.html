@@ -4,28 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="favicon.png" type="image/png">
-  <title>формула-1</title>
+  <title>формула.</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            graphite: "#1A1A1A",
-            slate: "#666666",
-            rosso: "#D40000",
-            cloud: "#F7F7F7",
-            line: "#EAEAEA",
+            graphite: "#F4F1EA",
+            slate: "#A59F97",
+            rosso: "#FF4D4D",
+            cloud: "#161616",
+            line: "#2B2B2E",
+            panel: "#121214",
+            steel: "#1D1D21",
+            mist: "#E7E1D5",
           },
           fontFamily: {
-            sans: ["Inter", "system-ui", "sans-serif"],
+            sans: ["Manrope", "system-ui", "sans-serif"],
+            display: ["Space Grotesk", "system-ui", "sans-serif"],
             mono: ["JetBrains Mono", "SFMono-Regular", "ui-monospace", "monospace"],
           },
           letterSpacing: {
             tighter2: "-0.04em",
           },
           boxShadow: {
-            speed: "10px 10px 0 0 rgba(212, 0, 0, 0.12)",
+            speed: "0 18px 40px rgba(255, 77, 77, 0.18)",
+            panel: "0 22px 90px rgba(0, 0, 0, 0.34)",
           },
         },
       },
@@ -33,7 +38,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     html {
       scroll-behavior: smooth;
@@ -41,17 +46,16 @@
 
     body {
       background:
-        linear-gradient(to bottom, rgba(212, 0, 0, 0.06), rgba(212, 0, 0, 0) 180px),
-        #ffffff;
+        radial-gradient(circle at top left, rgba(255, 77, 77, 0.14), rgba(255, 77, 77, 0) 24%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 18%),
+        linear-gradient(180deg, #090909 0%, #0f0f10 42%, #111112 100%);
     }
 
     .fade-section {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(18px);
       will-change: opacity, transform;
-      transition:
-        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
     .fade-section.is-visible {
@@ -59,104 +63,196 @@
       transform: translateY(0);
     }
 
-    .ferrari-shot {
+    .panel {
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+        rgba(18, 18, 20, 0.9);
+      box-shadow: 0 22px 90px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(16px);
     }
 
-    .ferrari-shot img {
-      opacity: 0;
-      transform: translate3d(-16vw, 0, 0) scale(1.12);
-      filter: blur(8px);
-      will-change: transform, opacity, filter;
-    }
-
-    .ferrari-shot::after {
+    .panel::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 24%);
-      transform: translateX(-130%);
-      opacity: 0;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 77, 77, 0.55), rgba(255, 77, 77, 0));
       pointer-events: none;
     }
 
-    .ferrari-shot.is-visible img {
-      animation: ferrari-drive-in 1.5s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+    .noise::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 92%);
+      pointer-events: none;
     }
 
-    .ferrari-shot.is-visible::after {
-      animation: ferrari-speed-glint 1.1s ease-out 0.18s forwards;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #a59f97;
     }
 
-    @keyframes ferrari-drive-in {
-      0% {
-        opacity: 0;
-        transform: translate3d(-18vw, 0, 0) scale(1.14);
-        filter: blur(10px);
-      }
-
-      58% {
-        opacity: 1;
-        transform: translate3d(2.4vw, 0, 0) scale(1.03);
-        filter: blur(0);
-      }
-
-      78% {
-        transform: translate3d(-0.8vw, 0, 0) scale(1.01);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-        filter: blur(0);
-      }
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(255, 77, 77, 0.18));
     }
 
-    @keyframes ferrari-speed-glint {
-      0% {
-        opacity: 0;
-        transform: translateX(-130%);
-      }
-
-      18% {
-        opacity: 0.9;
-      }
-
-      100% {
-        opacity: 0;
-        transform: translateX(130%);
-      }
+    .hero-grid {
+      background:
+        radial-gradient(circle at left top, rgba(255, 77, 77, 0.12), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
     }
 
-    .reveal-item,
-    .slide-in-left,
-    .slide-in-right {
+    .metric-card {
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+    }
+
+    .metric-card strong {
+      display: block;
+      margin-top: 0.55rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.2;
+      color: #f4f1ea;
+    }
+
+    .pitlane-easter {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .pitlane-card {
+      width: min(280px, calc(100vw - 36px));
+      padding: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+        rgba(14, 14, 16, 0.92);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+      backdrop-filter: blur(14px);
       opacity: 0;
-      will-change: opacity, transform;
-      transition:
-        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: var(--reveal-delay, 0ms);
+      transform: translateY(10px) scale(0.98);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      pointer-events: none;
     }
 
-    .reveal-item {
-      transform: translateY(22px) scale(0.985);
+    .pitlane-thumb {
+      width: 100%;
+      overflow: hidden;
     }
 
-    .slide-in-left {
-      transform: translateX(-52px);
+    .pitlane-thumb img {
+      width: 100%;
+      display: block;
+      filter: saturate(1.02) contrast(1.04);
     }
 
-    .slide-in-right {
-      transform: translateX(52px);
+    .pitlane-label {
+      margin-top: 0.8rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a59f97;
     }
 
-    .fade-section.is-visible .reveal-item,
-    .fade-section.is-visible .slide-in-left,
-    .fade-section.is-visible .slide-in-right {
+    .pitlane-title {
+      margin-top: 0.45rem;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fffaf2;
+    }
+
+    .pitlane-trigger {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(15, 15, 17, 0.92);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #e7e1d5;
+      text-decoration: none;
+      pointer-events: auto;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .pitlane-trigger:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 77, 77, 0.22);
+      background: rgba(18, 18, 20, 0.96);
+    }
+
+    .pitlane-easter:hover .pitlane-card,
+    .pitlane-easter:focus-within .pitlane-card {
       opacity: 1;
-      transform: translate3d(0, 0, 0) scale(1);
+      transform: translateY(-62px) scale(1);
+      pointer-events: auto;
+    }
+
+    @media (max-width: 639px) {
+      .pitlane-trigger span:last-child {
+        display: none;
+      }
+    }
+
+    .card-surface {
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .card-surface:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 77, 77, 0.22);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #ff4d4d, #d92f2f);
+      box-shadow: 0 18px 44px rgba(255, 77, 77, 0.2);
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #ff5b5b, #e93b3b);
+    }
+
+    .section-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -164,67 +260,77 @@
         scroll-behavior: auto;
       }
 
-      .fade-section,
-      .reveal-item,
-      .slide-in-left,
-      .slide-in-right,
-      .ferrari-shot img,
-      .ferrari-shot::after {
+      .fade-section {
         opacity: 1;
         transform: none;
-        filter: none;
         transition: none;
-        animation: none;
       }
     }
 
     h1 {
       text-align: center;
-      text-justify: inter-word;
     }
 
     h2 {
       text-align: center;
-      text-justify: inter-word;
     }
 
   </style>
 </head>
 <body class="font-sans text-graphite antialiased">
-  <div class="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
+  <div class="mx-auto max-w-[1440px] px-4 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-8">
     <main>
-      <section class="fade-section grid gap-10 pt-12 pb-2 sm:gap-12 sm:pt-8 sm:pb-24 lg:gap-16 lg:pt-10 lg:pb-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-        <div class="space-y-8 sm:space-y-10">
+      <section class="panel noise hero-grid fade-section rounded-[34px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+        <div class="space-y-8 sm:space-y-9">
           <div class="space-y-5 sm:space-y-6">
-            <h1 class="max-w-4xl text-5xl font-extrabold leading-tight tracking-tighter2 sm:text-7xl">
+            <div class="eyebrow">Комьюнити для выхода на зарубежный рынок</div>
+            <h1 class="font-display max-w-5xl text-5xl font-bold leading-[0.94] tracking-tighter2 sm:text-7xl lg:text-[5.5rem]">
               Добро пожаловать в <span class="text-rosso">формулу-1</span>
             </h1>
-            <p class="max-w-2xl text-lg leading-8 text-slate sm:text-xl text-center">
+            <p class="max-w-2xl text-lg leading-8 text-slate text-center sm:text-xl">
               Комьюнити единомышленников, в котором ты поймешь, что нужно делать, чтобы выйти на
               <span class="font-mono text-graphite text-rosso">$10,000</span>
               с зарубежного рынка.
             </p>
           </div>
-          <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center"></div>
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="cta-button inline-flex items-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300">
+              Присоединиться за $15 навсегда
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <div class="font-mono text-center text-xs uppercase tracking-[0.18em] text-slate">Навсегда. Один платёж. Без подписки.</div>
+          </div>
+          <div class="grid gap-4 pt-2 sm:grid-cols-3 lg:max-w-5xl">
+            <div class="metric-card rounded-[24px] px-5 py-5">
+              <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-slate">Фокус</span>
+              <strong>$10,000/мес на зарубежке</strong>
+            </div>
+            <div class="metric-card rounded-[24px] px-5 py-5">
+              <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-slate">Формат</span>
+              <strong>Материалы, разборы и среда роста</strong>
+            </div>
+            <div class="metric-card rounded-[24px] px-5 py-5">
+              <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-slate">Старт</span>
+              <strong>$15 навсегда</strong>
+            </div>
+          </div>
         </div>
       </section>
-      <div class="relative ferrari-shot fade-section">
-        <img
-                src="ferrari.png"
-                alt="Кадр сообщества формула-1"
-                class="h-full w-full object-cover object-center"
-        />
-      </div>
-      <section class="fade-section py-10 sm:py-24 lg:py-28">
-        <div class="mb-10 flex flex-col gap-5 sm:mb-12 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
+
+      <section class="panel fade-section mt-4 rounded-[34px] px-5 py-10 sm:mt-5 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+        <div class="mb-8 flex flex-col gap-5 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-4">
-            <h2 class="text-4xl font-extrabold leading-tight tracking-tighter sm:text-6xl">
+            <div class="eyebrow">Быстрый обзор</div>
+            <h2 class="font-display text-4xl font-bold leading-tight tracking-tighter2 sm:text-6xl">
               Посмотри видео о <span class="text-rosso">формуле-1</span>
             </h2>
           </div>
         </div>
         <div class="space-y-6 sm:space-y-8">
-          <div class="aspect-video overflow-hidden border border-line">
+          <div class="aspect-video overflow-hidden rounded-[28px] border border-line bg-cloud shadow-panel">
             <iframe
               class="h-full w-full"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
@@ -234,11 +340,8 @@
               allowfullscreen
             ></iframe>
           </div>
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div class="text-xl font-bold tracking-tighter text-rosso">формула-1</div>
-            </div>
-            <a href="#" class="inline-flex items-center gap-3 bg-rosso px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-1 hover:shadow-speed">
+          <div class="section-divider flex flex-col gap-5 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="cta-button inline-flex items-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300">
               Присоединиться за $15 навсегда
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14"></path>
@@ -249,18 +352,19 @@
         </div>
       </section>
 
-      <section class="fade-section border-b border-line py-20 sm:py-24 lg:py-28">
-        <div class="mb-12 max-w-4xl space-y-4 sm:mb-14 lg:mb-16">
-          <h2 class="text-4xl font-extrabold tracking-tighter2 sm:text-6xl">Что ты <span class="text-rosso">найдёшь</span> внутри</h2>
-          <p class="text-lg leading-8 text-slate text-center">
+      <section class="panel fade-section mt-4 rounded-[34px] px-5 py-10 sm:mt-5 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+        <div class="mb-10 max-w-4xl space-y-4 sm:mb-12">
+          <div class="eyebrow">Что внутри</div>
+          <h2 class="font-display text-4xl font-bold tracking-tighter2 sm:text-6xl">Что ты <span class="text-rosso">найдёшь</span> внутри</h2>
+          <p class="text-lg leading-8 text-center text-slate">
             Полный набор материалов и знаний, чтобы ты понял как выйти на
             <span class="font-mono text-graphite text-rosso">$10,000/мес</span>
             на зарубежном рынке.
           </p>
         </div>
 
-        <div class="grid gap-6 sm:gap-8 lg:gap-12 lg:grid-cols-3">
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <i data-lucide="clapperboard" class="h-8 w-8 text-rosso"></i>
             <div class="space-y-4">
               <h3 class="text-2xl font-bold tracking-tighter2">Консультация за $1500</h3>
@@ -268,7 +372,7 @@
             </div>
           </article>
 
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <i data-lucide="users" class="h-8 w-8 text-rosso"></i>
             <div class="space-y-4">
               <h3 class="text-2xl font-bold tracking-tighter2">Коммьюнити заряженных предпринимателей</h3>
@@ -276,7 +380,7 @@
             </div>
           </article>
 
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <i data-lucide="target" class="h-8 w-8 text-rosso"></i>
             <div class="space-y-4">
               <h3 class="text-2xl font-bold tracking-tighter2">Стратегия на жизнь</h3>
@@ -284,7 +388,7 @@
             </div>
           </article>
 
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <i data-lucide="chart-column" class="h-8 w-8 text-rosso"></i>
             <div class="space-y-4">
               <h3 class="text-2xl font-bold tracking-tighter2">Разборы воронок</h3>
@@ -292,7 +396,7 @@
             </div>
           </article>
 
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <i data-lucide="book-open" class="h-8 w-8 text-rosso"></i>
             <div class="space-y-4">
               <h3 class="text-2xl font-bold tracking-tighter2">Материалы по продуктам</h3>
@@ -300,7 +404,7 @@
             </div>
           </article>
 
-          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+          <article class="card-surface flex h-full flex-col gap-8 rounded-[28px] border border-line bg-cloud p-8">
             <div class="inline-flex h-12 w-12 items-center justify-center">
               <svg viewBox="0 0 24 24" class="h-8 w-8 text-rosso" fill="currentColor" aria-hidden="true">
                 <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.4 3.7-6.4 3.7Z"/>
@@ -314,21 +418,22 @@
         </div>
       </section>
 
-      <section class="fade-section border-b border-line py-20 sm:py-24 lg:py-28">
-        <div class="mb-12 max-w-4xl space-y-4 sm:mb-14 lg:mb-16">
-          <h2 class="text-4xl font-extrabold tracking-tighter2 sm:text-6xl">
-            Почему <span class="text-rosso">формула-1</span>  работает
+      <section class="panel fade-section mt-4 rounded-[34px] px-5 py-10 sm:mt-5 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+        <div class="mb-10 max-w-4xl space-y-4 sm:mb-12">
+          <div class="eyebrow">Почему это работает</div>
+          <h2 class="font-display text-4xl font-bold tracking-tighter2 sm:text-6xl">
+            Почему <span class="text-rosso">формула.</span>  работает
           </h2>
         </div>
 
-        <div class="space-y-5 sm:space-y-6">
-          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="card-surface flex items-start gap-4 rounded-[26px] border border-line bg-cloud p-6 sm:gap-6">
             <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
             <p class="max-w-4xl text-lg leading-8 text-graphite">
               Цель <span class="font-mono text-rosso">формулы-1</span> дать тебе коммьюнити из заряженных единомышленников-предпринимателей, которые покоряют зарубежный рынок.
             </p>
           </div>
-          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+          <div class="card-surface flex items-start gap-4 rounded-[26px] border border-line bg-cloud p-6 sm:gap-6">
             <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
             <p class="max-w-4xl text-lg leading-8 text-graphite">
               После вступления ты поймешь, что нужно делать, чтобы выйти на
@@ -336,11 +441,11 @@
               с зарубежного рынка.
             </p>
           </div>
-          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+          <div class="card-surface flex items-start gap-4 rounded-[26px] border border-line bg-cloud p-6 sm:gap-6">
             <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
             <p class="max-w-4xl text-lg leading-8 text-graphite">Материалы постоянно дополняются и обновляются.</p>
           </div>
-          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+          <div class="card-surface flex items-start gap-4 rounded-[26px] border border-line bg-cloud p-6 sm:gap-6">
             <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
             <p class="max-w-4xl text-lg leading-8 text-graphite">
               Ты будешь реализовывать стратегию, потому что хочешь, а не потому что
@@ -350,24 +455,26 @@
         </div>
       </section>
 
-      <section id="join" class="fade-section py-20 sm:py-24 lg:py-28">
-        <div class="grid gap-10 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <section id="join" class="panel noise fade-section mt-4 rounded-[34px] px-5 py-10 sm:mt-5 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div class="space-y-5 sm:space-y-6">
-            <h2 class="max-w-4xl text-4xl font-extrabold tracking-tighter2 sm:text-6xl">Готов <span class="text-rosso">начать</span> свой путь?</h2>
+            <div class="eyebrow">Последний шаг</div>
+            <h2 class="font-display max-w-4xl text-4xl font-bold tracking-tighter2 sm:text-6xl">Готов <span class="text-rosso">начать</span> свой путь?</h2>
             <p class="max-w-2xl text-lg leading-8 text-slate text-center">
               Если ты реально готов выйти на
               <span class="font-mono text-graphite text-rosso">$10,000/мес</span>
               на американском рынке, то ждем тебя в <span class="text-rosso font-bold">формуле-1.</span> Здесь начнется твоя дорога.
             </p>
           </div>
-          <div class="space-y-5 border-t border-line pt-6 sm:space-y-6 sm:pt-8 lg:border-t-0 lg:border-l lg:pl-12">
-            <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="inline-flex items-center gap-3 bg-rosso px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-1 hover:shadow-speed">
+          <div class="space-y-5 rounded-[28px] border border-line bg-cloud/70 p-6 sm:space-y-6 sm:p-8 lg:ml-auto lg:max-w-md">
+            <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="cta-button inline-flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300">
               Присоединиться за $15 навсегда
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="m13 5 7 7-7 7"></path>
               </svg>
             </a>
+            <p class="text-sm leading-6 text-slate text-center">Один платёж, бессрочный доступ и новые материалы по мере обновления базы.</p>
             <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate text-center">
               Платеж обрабатывается безопасно через <span class="text-graphite text-rosso">Lava</span>
             </p>
@@ -375,6 +482,18 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <div class="pitlane-easter" aria-label="Пасхалка Ferrari">
+    <div class="pitlane-card">
+      <div class="pitlane-thumb">
+        <img src="ferrari.png" alt="Ferrari">
+      </div>
+    </div>
+    <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="pitlane-trigger">
+      <span>🏎️</span>
+      <span>Fast lane only</span>
+    </a>
   </div>
 
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -389,66 +508,10 @@
     });
 
     const fadeSections = document.querySelectorAll(".fade-section");
-    const staggerSelectors = [
-      "h1",
-      "h2",
-      "p",
-      "article",
-      "iframe",
-      "a",
-      ".space-y-5 > div",
-      ".space-y-6 > div",
-      ".space-y-8 > div",
-      ".space-y-10 > div",
-      ".flex.items-start.gap-4.border-t",
-    ];
 
     const revealSection = (section) => {
       section.classList.add("is-visible");
     };
-
-    const prepareAnimatedChildren = (section) => {
-      let revealIndex = 0;
-      let sideIndex = 0;
-      const seen = new Set();
-
-      staggerSelectors.forEach((selector) => {
-        section.querySelectorAll(selector).forEach((element) => {
-          if (seen.has(element) || element.closest(".fade-section") !== section) {
-            return;
-          }
-
-          seen.add(element);
-
-          const isCard = element.tagName === "ARTICLE";
-          const isListRow =
-            element.classList.contains("flex") &&
-            element.classList.contains("items-start") &&
-            element.classList.contains("border-t");
-
-          if (isCard || isListRow) {
-            const directionClass = sideIndex % 2 === 0 ? "slide-in-left" : "slide-in-right";
-            element.classList.add(directionClass);
-            element.style.setProperty("--reveal-delay", `${120 + sideIndex * 110}ms`);
-            sideIndex += 1;
-            return;
-          }
-
-          if (element.tagName === "A") {
-            element.classList.add("slide-in-right");
-            element.style.setProperty("--reveal-delay", `${140 + revealIndex * 80}ms`);
-            revealIndex += 1;
-            return;
-          }
-
-          element.classList.add("reveal-item");
-          element.style.setProperty("--reveal-delay", `${revealIndex * 90}ms`);
-          revealIndex += 1;
-        });
-      });
-    };
-
-    fadeSections.forEach(prepareAnimatedChildren);
 
     const observer = new IntersectionObserver(
       (entries) => {
