@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.png" type="image/png">
+  <title>формула-1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            graphite: "#1A1A1A",
+            slate: "#666666",
+            rosso: "#D40000",
+            cloud: "#F7F7F7",
+            line: "#EAEAEA",
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "SFMono-Regular", "ui-monospace", "monospace"],
+          },
+          letterSpacing: {
+            tighter2: "-0.04em",
+          },
+          boxShadow: {
+            speed: "10px 10px 0 0 rgba(212, 0, 0, 0.12)",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        linear-gradient(to bottom, rgba(212, 0, 0, 0.06), rgba(212, 0, 0, 0) 180px),
+        #ffffff;
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="font-sans text-graphite antialiased">
+  <div class="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-16">
+    <main>
+      <section class="fade-section grid gap-10 pt-6 pb-12 sm:gap-12 sm:pt-8 sm:pb-24 lg:gap-16 lg:pt-10 lg:pb-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <div class="space-y-8 sm:space-y-10">
+          <div class="space-y-5 sm:space-y-6">
+            <h1 class="max-w-4xl text-5xl font-extrabold leading-tight tracking-tighter2 sm:text-7xl">
+              Добро пожаловать в <span class="text-rosso">формулу-1</span>
+            </h1>
+            <p class="max-w-2xl text-lg leading-8 text-slate sm:text-xl">
+              Комьюнити единомышленников, в котором ты поймешь, что нужно делать, чтобы выйти на
+              <span class="font-mono text-graphite text-rosso">$10,000</span>
+              с зарубежного рынка.
+            </p>
+          </div>
+          <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center"></div>
+        </div>
+      </section>
+      <div class="relative">
+        <img
+                src="ferrari.png"
+                alt="Кадр сообщества формула-1"
+                class="h-full w-full object-cover object-center"
+        />
+      </div>
+      <section class="fade-section border-b border-line py-20 sm:py-24 lg:py-28">
+        <div class="mb-10 flex flex-col gap-5 sm:mb-12 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
+          <div class="space-y-4">
+            <h2 class="text-4xl font-extrabold leading-tight tracking-tighter sm:text-6xl">
+              Посмотри видео о <span class="text-rosso">формуле-1</span>
+            </h2>
+          </div>
+        </div>
+        <div class="space-y-6 sm:space-y-8">
+          <div class="aspect-video overflow-hidden border border-line">
+            <iframe
+              class="h-full w-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+              title="Видео о формуле-1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div class="text-xl font-bold tracking-tighter text-rosso">формула-1</div>
+            </div>
+            <a href="#" class="inline-flex items-center gap-3 bg-rosso px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-1 hover:shadow-speed">
+              Присоединиться за $15 навсегда
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="fade-section border-b border-line py-20 sm:py-24 lg:py-28">
+        <div class="mb-12 max-w-4xl space-y-4 sm:mb-14 lg:mb-16">
+          <h2 class="text-4xl font-extrabold tracking-tighter2 sm:text-6xl">Что ты <span class="text-rosso">найдёшь</span> внутри</h2>
+          <p class="text-lg leading-8 text-slate">
+            Полный набор материалов и знаний, чтобы ты понял как выйти на
+            <span class="font-mono text-graphite text-rosso">$10,000/мес</span>
+            на зарубежном рынке.
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:gap-8 lg:gap-12 lg:grid-cols-3">
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <i data-lucide="clapperboard" class="h-8 w-8 text-rosso"></i>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">Консультация за $1500</h3>
+              <p class="leading-7 text-slate">Запись моей консультации о том, как выстроить фул систему инфобизнеса на 15,000$/мес.</p>
+            </div>
+          </article>
+
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <i data-lucide="users" class="h-8 w-8 text-rosso"></i>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">Коммьюнити заряженных предпринимателей</h3>
+              <p class="leading-7 text-slate">Общение с единомышленниками, а не незнакомцами из интернета.</p>
+            </div>
+          </article>
+
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <i data-lucide="target" class="h-8 w-8 text-rosso"></i>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">Стратегия на жизнь</h3>
+              <p class="leading-7 text-slate">Гайд, который навсегда изменит твою жизнь и поможет составить глобальную стратегию и на ближайшие 3 года.</p>
+            </div>
+          </article>
+
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <i data-lucide="chart-column" class="h-8 w-8 text-rosso"></i>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">Разборы воронок</h3>
+              <p class="leading-7 text-slate">Анализ воронок на зарубежном рынке и как строить такие же.</p>
+            </div>
+          </article>
+
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <i data-lucide="book-open" class="h-8 w-8 text-rosso"></i>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">Материалы по продуктам</h3>
+              <p class="leading-7 text-slate">Полные гайды по созданию продуктов и офферов.</p>
+            </div>
+          </article>
+
+          <article class="flex h-full flex-col gap-8 bg-cloud p-8">
+            <div class="inline-flex h-12 w-12 items-center justify-center">
+              <svg viewBox="0 0 24 24" class="h-8 w-8 text-rosso" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.4 3.7-6.4 3.7Z"/>
+              </svg>
+            </div>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold tracking-tighter2">YouTube гайды</h3>
+              <p class="leading-7 text-slate">Материалы по снятию видео на YouTube, чтобы лутать клиентов на свои услуги и подписчиков с нуля.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="fade-section border-b border-line py-20 sm:py-24 lg:py-28">
+        <div class="mb-12 max-w-4xl space-y-4 sm:mb-14 lg:mb-16">
+          <h2 class="text-4xl font-extrabold tracking-tighter2 sm:text-6xl">
+            Почему <span class="text-rosso">формула-1</span>  работает
+          </h2>
+        </div>
+
+        <div class="space-y-5 sm:space-y-6">
+          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+            <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
+            <p class="max-w-4xl text-lg leading-8 text-graphite">
+              Цель <span class="font-mono text-rosso">формулы-1</span> дать тебе коммьюнити из заряженных единомышленников-предпринимателей, которые покоряют зарубежный рынок.
+            </p>
+          </div>
+          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+            <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
+            <p class="max-w-4xl text-lg leading-8 text-graphite">
+              После вступления ты поймешь, что нужно делать, чтобы выйти на
+              <span class="font-mono text-rosso">$10,000</span>
+              с зарубежного рынка.
+            </p>
+          </div>
+          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+            <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
+            <p class="max-w-4xl text-lg leading-8 text-graphite">Материалы постоянно дополняются и обновляются.</p>
+          </div>
+          <div class="flex items-start gap-4 border-t border-rosso pt-5 sm:gap-6 sm:pt-6">
+            <i data-lucide="move-right" class="mt-1 h-5 w-5 shrink-0 text-rosso"></i>
+            <p class="max-w-4xl text-lg leading-8 text-graphite">
+              Ты будешь реализовывать стратегию, потому что хочешь, а не потому что
+              <span class="font-mono text-rosso">надо</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="join" class="fade-section py-20 sm:py-24 lg:py-28">
+        <div class="grid gap-10 sm:gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div class="space-y-5 sm:space-y-6">
+            <h2 class="max-w-4xl text-4xl font-extrabold tracking-tighter2 sm:text-6xl">Готов <span class="text-rosso">начать</span> свой путь?</h2>
+            <p class="max-w-2xl text-lg leading-8 text-slate">
+              Если ты реально готов выйти на
+              <span class="font-mono text-graphite text-rosso">$10,000/мес</span>
+              на американском рынке, то ждем тебя в <span class="text-rosso font-bold">формуле-1.</span> Здесь начнется твоя дорога.
+            </p>
+          </div>
+          <div class="space-y-5 border-t border-line pt-6 sm:space-y-6 sm:pt-8 lg:border-t-0 lg:border-l lg:pl-12">
+            <a href="https://app.lava.top/products/b37c3485-0cd2-459f-a069-209f7940ba15" class="inline-flex items-center gap-3 bg-rosso px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-1 hover:shadow-speed">
+              Присоединиться за $15 навсегда
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate">
+              Платеж обрабатывается безопасно через <span class="text-graphite text-rosso">Lava</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons({
+      attrs: {
+        width: 28,
+        height: 28,
+        stroke: "currentColor",
+        "stroke-width": 1.5,
+      },
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+      }
+    );
+
+    document.querySelectorAll(".fade-section").forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
